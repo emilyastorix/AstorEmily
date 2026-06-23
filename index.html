@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emily Astor — Portafolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700;900&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --verde-oscuro:  #32432E;
+    --verde-claro:   #9FC164;
+    --azul-oscuro:   #2F4862;
+    --azul-claro:    #819DA5;
+    --gris:          #ddd8cc;
+    --blanco:        #f5f2eb;
+    --texto-claro:   #c8d8b0;
+    --bg-dark:       #1a2618;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Quicksand', sans-serif;
+    background: var(--bg-dark);
+    color: var(--blanco);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 8px 40px;
+    background: rgba(26,38,24,0.82);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(159,193,100,0.15);
+  }
+  nav .logo-area { display:flex; align-items:center; }
+  nav .logo-area img { height: 38px; width: auto; display:block; }
+  nav ul { list-style:none; display:flex; gap:32px; }
+  nav ul a { font-family:'Quicksand',sans-serif; font-size:1rem; font-weight:600; color:var(--blanco); text-decoration:none; letter-spacing:0.04em; opacity:0.9; transition:opacity 0.2s, color 0.2s; }
+  nav ul a:hover { opacity:1; color:var(--verde-claro); }
+
+  /* ── HERO ── */
+  #hero {
+    position:relative; height:100vh; overflow:hidden;
+    background: linear-gradient(160deg, #2F4862 0%, #3a5050 50%, #32432E 100%);
+  }
+  #hero-canvas { position:absolute; inset:0; width:100%; height:100%; }
+  .hero-content {
+    position:relative; z-index:2; height:100%;
+    display:flex; flex-direction:column; justify-content:center;
+    padding: 0 8vw;
+  }
+  .hero-content h1 {
+    font-family:'Rubik',sans-serif; font-weight:900;
+    font-size: clamp(4rem, 9vw, 9rem);
+    color: var(--verde-claro); line-height:0.9;
+    text-transform:uppercase; letter-spacing:-0.02em;
+  }
+  .hero-content .subtitle {
+    font-family:'Rubik',sans-serif; font-weight:400;
+    font-size:1.2rem; color:#ccdde0; margin-top:12px; letter-spacing:0.08em;
+  }
+  .hero-contacto { margin-top:36px; }
+  .hero-contacto p { font-size:1rem; letter-spacing:0.14em; text-transform:uppercase; color:#b8d0da; margin-bottom:12px; font-weight:600; }
+  .social-icons { display:flex; gap:14px; }
+  .social-icons a {
+    width:50px; height:50px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    background:#1a1a1a; transition:transform 0.2s, background 0.2s;
+    text-decoration:none; overflow:hidden;
+  }
+  .social-icons a:hover { transform:scale(1.1); background:#222; }
+  .social-icons img { width:30px; height:30px; object-fit:contain; }
+  .social-x { background:#000 !important; }
+  .social-x svg { width:22px; height:22px; fill:white; }
+  .social-art { background:#2a2a2a !important; }
+  .social-ig { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%) !important; }
+
+  /* ── HOLA ── */
+  #hola {
+    position:relative; overflow:hidden;
+    background: var(--verde-oscuro);
+    padding: 140px 6vw 160px;
+    border-radius: 32px 32px 0 0;
+  }
+  #hola-canvas { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; }
+  .hola-grid {
+    position:relative; z-index:2;
+    display:grid; grid-template-columns:1fr 1fr 1fr; gap:64px; align-items:start;
+  }
+
+  .hola-col h2 { font-family:'Rubik',sans-serif; font-weight:900; font-size:3.2rem; color:var(--verde-claro); margin-bottom:24px; }
+  .hola-col p { font-size:1rem; line-height:1.9; color:var(--texto-claro); }
+
+  .hola-col h3 { font-family:'Rubik',sans-serif; font-weight:700; font-size:1.6rem; color:var(--verde-claro); margin-bottom:16px; }
+  .skills-label { font-size:1rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--verde-claro); font-weight:600; margin:18px 0 8px; }
+  .skills-list { font-size:1rem; color:var(--texto-claro); line-height:2; }
+
+  .prog-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:8px; }
+  .prog-badge {
+    background: rgba(255,255,255,0.06); border:1.5px solid rgba(159,193,100,0.3);
+    border-radius:14px; padding:14px 8px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:7px;
+    transition:transform 0.2s, background 0.2s; cursor:default;
+  }
+  .prog-badge:hover { transform:scale(1.07); background:rgba(159,193,100,0.12); }
+  .prog-badge img { width:28px; height:28px; object-fit:contain; }
+  .prog-badge svg { width:28px; height:28px; }
+  .prog-badge span { font-size:1rem; color:var(--texto-claro); font-weight:600; letter-spacing:0.05em; }
+
+  .hola-col.formacion-col { display:flex; flex-direction:column; align-items:center; text-align:center; }
+  .hola-col.formacion-col h3 { text-align:center; }
+  .formacion-item { margin-bottom:22px; width:100%; }
+  .formacion-item p {
+    font-size:1rem; color:var(--texto-claro); line-height:1.65;
+    text-align:center;
+  }
+  .formacion-item .fi-year {
+    font-size:1rem; letter-spacing:0.1em; text-transform:uppercase;
+    color:rgba(159,193,100,0.9); font-weight:600; margin-bottom:4px;
+  }
+  .formacion-divider {
+    width:40px; height:1.5px;
+    background: rgba(159,193,100,0.25);
+    margin: 0 auto 22px;
+  }
+
+  /* ── PROYECTOS ── */
+  #proyectos {
+    position:relative; overflow:hidden;
+    background: var(--azul-oscuro);
+    padding: 100px 6vw;
+  }
+  #proy-canvas { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; }
+  #proyectos h2 { font-family:'Rubik',sans-serif; font-weight:900; font-size:3rem; color:var(--gris); text-align:center; margin-bottom:16px; }
+  #proyectos .intro-text { font-size:1rem; color:rgba(200,210,220,0.95); text-align:center; max-width:700px; margin:0 auto 52px; line-height:1.8; }
+
+  /* ── CARRUSEL ── */
+  .proy-carousel-outer { position:relative; overflow:hidden; }
+  .proy-carousel-track { display:flex; transition:transform 0.55s cubic-bezier(.4,0,.2,1); }
+
+  .proy-card {
+    min-width:100%;
+    background: #2a3d20;
+    border-radius: 20px;
+    padding: 22px 28px 20px;
+    position:relative; overflow:hidden;
+    cursor:pointer;
+    transition: filter 0.2s;
+  }
+  .proy-card:hover { filter: brightness(1.06); }
+
+  .proy-card-title {
+    font-family:'Rubik',sans-serif; font-weight:900;
+    font-size: clamp(1.2rem, 2vw, 1.6rem);
+    color: var(--verde-claro);
+    margin-bottom: 14px; line-height:1;
+  }
+
+  .proy-card-frames { margin-bottom:14px; }
+  .proy-frame {
+    width:100%; aspect-ratio:21/9;
+    border:2px solid #111; border-radius:12px;
+    background:rgba(0,0,0,0.18); overflow:hidden; position:relative;
+  }
+  .proy-frame img, .proy-frame video { width:100%; height:100%; object-fit:cover; display:block; border-radius:10px; }
+  .proy-frame.peek { display:none; }
+
+  .proy-card-desc {
+    font-size:1rem; color:rgba(200,220,180,0.95);
+    line-height:1.65; text-align:center;
+    max-width:70%; margin:0 auto;
+  }
+
+  .proy-carousel-nav { display:flex; justify-content:center; gap:10px; margin-top:20px; }
+  .proy-dot {
+    width:9px; height:9px; border-radius:50%;
+    background:rgba(255,255,255,0.2); cursor:pointer;
+    transition:background 0.2s, transform 0.2s; border:none;
+  }
+  .proy-dot.active { background:var(--verde-claro); transform:scale(1.25); }
+  .proy-carousel-arrows {
+    position:absolute; top:50%; transform:translateY(-50%);
+    width:100%; display:flex; justify-content:space-between;
+    padding:0 12px; pointer-events:none; z-index:10;
+  }
+  .proy-carousel-arrows button {
+    pointer-events:all; background:rgba(0,0,0,0.4); border:none; color:white;
+    width:40px; height:40px; border-radius:50%; font-size:1.1rem; cursor:pointer;
+    transition:background 0.2s; display:flex; align-items:center; justify-content:center;
+  }
+  .proy-carousel-arrows button:hover { background:rgba(0,0,0,0.7); }
+
+  /* ── FOOTER ── */
+  footer {
+    background:#0f1a0d; padding:32px 6vw;
+    text-align:center; font-size:1rem; color:rgba(255,255,255,0.7);
+    letter-spacing:0.06em;
+  }
+
+  /* ── PÁGINA DE PROYECTO ── */
+  .project-page {
+    display:none; position:fixed; inset:0; z-index:200;
+    background:var(--verde-oscuro); overflow-y:auto;
+    animation:fadeIn 0.3s ease;
+  }
+  .project-page.active { display:block; }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+  .project-page .proj-header {
+    padding:36px 6vw 24px;
+    display:flex; align-items:center; justify-content:space-between;
+    border-bottom:1px solid rgba(159,193,100,0.15);
+    position:sticky; top:0; background:var(--verde-oscuro); z-index:10;
+    backdrop-filter:blur(8px);
+  }
+  .project-page .proj-header h2 { font-family:'Rubik',sans-serif; font-weight:900; font-size:2rem; color:var(--verde-claro); }
+  .btn-back {
+    background:rgba(159,193,100,0.12); border:1px solid var(--verde-claro); color:var(--verde-claro);
+    padding:10px 22px; border-radius:24px; cursor:pointer; font-family:'Quicksand',sans-serif;
+    font-weight:600; font-size:1rem; letter-spacing:0.06em; transition:background 0.2s;
+  }
+  .btn-back:hover { background:rgba(159,193,100,0.25); }
+  .proj-header-actions { display:flex; gap:10px; align-items:center; }
+  .btn-next {
+    background:var(--verde-claro); border:1px solid var(--verde-claro); color:#1a2618;
+    padding:10px 22px; border-radius:24px; cursor:pointer; font-family:'Quicksand',sans-serif;
+    font-weight:700; font-size:1rem; letter-spacing:0.06em; transition:background 0.2s;
+  }
+  .btn-next:hover { background:#b8d87a; }
+  .project-page .proj-body { padding:48px 6vw; }
+  .project-page .proj-body p { font-size:1rem; color:var(--texto-claro); line-height:1.9; max-width:700px; margin-bottom:28px; }
+  .proj-img-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px; margin-top:32px; }
+  .proj-img-grid img {
+    width:100%; aspect-ratio:16/9; object-fit:cover;
+    border-radius:16px; border:1.5px solid rgba(159,193,100,0.2);
+    display:block;
+  }
+  .proj-img-grid .img-placeholder {
+    aspect-ratio:16/9; background:rgba(255,255,255,0.06);
+    border:1.5px solid rgba(159,193,100,0.2); border-radius:16px;
+    display:flex; align-items:center; justify-content:center;
+    color:rgba(159,193,100,0.85); font-size:1rem; letter-spacing:0.1em; text-transform:uppercase;
+  }
+
+  /* ── CANVAS EN PÁGINAS DE PROYECTO ── */
+  .proj-canvas {
+    position:absolute; inset:0; width:100%; height:100%;
+    pointer-events:none; z-index:0;
+  }
+  .project-page .proj-header { position:sticky; z-index:10; }
+  .project-page .proj-body { position:relative; z-index:2; }
+
+  .reveal { opacity:0; transform:translateY(30px); transition:opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+
+  /* ── TOOLTIP DE IMÁGENES ── */
+  .img-tooltip-wrap {
+    position: relative;
+    display: block;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1.5px solid rgba(159,193,100,0.2);
+    aspect-ratio: 16/9;
+  }
+  .img-tooltip-wrap img,
+  .img-tooltip-wrap video {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+    border-radius: 0;
+    border: none;
+    aspect-ratio: unset;
+  }
+  .img-tooltip-wrap::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(to top, rgba(10,20,8,0.97) 0%, rgba(10,20,8,0.82) 60%, transparent 100%);
+    color: var(--texto-claro);
+    padding: 32px 16px 14px;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1rem; line-height: 1.6;
+    letter-spacing: 0.025em;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+  }
+  .img-tooltip-wrap:hover::after {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  /* Override old standalone img styles inside grids — wrapper handles everything now */
+  .proj-img-grid img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+    border-radius: 0; border: none; aspect-ratio: unset;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo-area"><img src="Logo.svg" alt="Emily Astor"></div>
+  <ul>
+    <li><a href="#hero">Inicio</a></li>
+    <li><a href="#hola">Hola</a></li>
+    <li><a href="#proyectos">Proyectos</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-content">
+    <h1>PORTA<br>FOLIO</h1>
+    <p class="subtitle">Emily Astor</p>
+    <div class="hero-contacto">
+      <p>Contáctame</p>
+      <div class="social-icons">
+        <!-- X / Twitter -->
+        <a href="https://x.com/AstorEmily23" target="_blank" rel="noopener" class="social-x" title="X / Twitter">
+          <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <!-- ArtStation -->
+        <a href="https://www.artstation.com/astoremily1" target="_blank" rel="noopener" class="social-art" title="ArtStation">
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="white"><path d="M0 17.723l2.027 3.505h.001a2.423 2.423 0 0 0 2.164 1.333h13.457l-2.792-4.838H0zm24 .025c0-.484-.143-.935-.388-1.314L15.728 2.728a2.424 2.424 0 0 0-2.142-1.289H9.419L21.598 22.54l1.92-3.325c.378-.637.482-.919.482-1.467zm-11.129-3.462L7.428 4.858l-5.444 9.428h10.887z"/></svg>
+        </a>
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/astoremily23/?hl=es" target="_blank" rel="noopener" class="social-ig" title="Instagram">
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOLA -->
+<section id="hola">
+  <canvas id="hola-canvas"></canvas>
+  <div class="hola-grid">
+
+    <!-- Col 1: Bio -->
+    <div class="hola-col reveal">
+      <h2>Hola</h2>
+      <p>Soy Emily Astor, diseñadora digital enfocada en la creación de experiencias visuales con un enfoque artesanal. Mi trabajo surge de un proceso creativo alimentado por todo lo que he observado y consumido a lo largo del tiempo, entendiendo el arte como un diálogo constante entre referencias y transformación.</p>
+      <br>
+      <p>Me interesa explorar distintas técnicas y métodos, incluso aquellos que se sitúan fuera de lo digital, incorporándolos a mi práctica. Para mí, enfrentarme a un proyecto cuya metodología desconozco no es un obstáculo, sino una oportunidad para aprender.</p>
+    </div>
+
+    <!-- Col 2: Habilidades -->
+    <div class="hola-col reveal" style="transition-delay:0.15s">
+      <h3>Habilidades</h3>
+      <p class="skills-label">Idiomas</p>
+      <p class="skills-list">Español<br>Inglés</p>
+      <p class="skills-label">Programas</p>
+      <div class="prog-grid">
+
+        <!-- Adobe Illustrator -->
+        <div class="prog-badge" title="Adobe Illustrator">
+          <img src="illustratoricon.svg" alt="Illustrator" width="28" height="28">
+          <span>Illustrator</span>
+        </div>
+
+        <!-- Adobe InDesign -->
+        <div class="prog-badge" title="Adobe InDesign">
+          <img src="indesignicon.svg" alt="InDesign" width="28" height="28">
+          <span>InDesign</span>
+        </div>
+
+        <!-- After Effects -->
+        <div class="prog-badge" title="After Effects">
+          <img src="aftereffectsicon.svg" alt="After Effects" width="28" height="28">
+          <span>After Effects</span>
+        </div>
+
+        <!-- Blender -->
+        <div class="prog-badge" title="Blender">
+          <img src="blendericon.svg" alt="Blender" width="28" height="28">
+          <span>Blender</span>
+        </div>
+
+        <!-- Figma -->
+        <div class="prog-badge" title="Figma">
+          <img src="figmaicon.svg" alt="Figma" width="28" height="28">
+          <span>Figma</span>
+        </div>
+
+        <!-- Affinity -->
+        <div class="prog-badge" title="Affinity">
+          <img src="affinityicon.svg" alt="Affinity" width="28" height="28">
+          <span>Affinity</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Col 3: Formación -->
+    <div class="hola-col formacion-col reveal" style="transition-delay:0.3s">
+      <h3>Formación</h3>
+
+      <div class="formacion-item">
+        <p class="fi-year">Educación secundaria</p>
+        <p>Unidad Educativa<br>Americano Obrajes</p>
+      </div>
+      <div class="formacion-divider"></div>
+
+      <div class="formacion-item">
+        <p class="fi-year">Educación superior</p>
+        <p>Universidad Católica<br>"San Pablo"</p>
+      </div>
+      <div class="formacion-divider"></div>
+
+      <div class="formacion-item">
+        <p class="fi-year">Autodidacta</p>
+        <p>Ilustración<br>de manera autodidacta</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROYECTOS -->
+<section id="proyectos">
+  <canvas id="proy-canvas"></canvas>
+  <div style="position:relative;z-index:2;">
+    <h2 class="reveal">Proyectos</h2>
+    <p class="intro-text reveal" style="transition-delay:0.1s">Los siguientes proyectos fueron desarrollados a lo largo de mi formación académica, cada uno bajo consignas, tiempos de entrega y parámetros específicos. Estas condiciones no solo fueron cumplidas, sino que también funcionaron como punto de partida para explorar distintas soluciones y enfoques dentro de cada propuesta.</p>
+
+    <div class="reveal" style="position:relative; transition-delay:0.2s">
+      <div class="proy-carousel-outer">
+        <div class="proy-carousel-track" id="proy-carousel">
+
+          <!-- Koishelf -->
+          <div class="proy-card" onclick="openProject('koishelf')">
+            <div class="proy-card-title">Koishelf</div>
+            <div class="proy-card-frames">
+              <div class="proy-frame"><img src="koishelf1.jpg" alt="Koishelf"></div>
+            </div>
+            <p class="proy-card-desc">Proyecto de diseño y desarrollo de una app de lectura de manga. Trabajé en la construcción visual del logo, desarrollando una identidad coherente con la estética del medio.</p>
+          </div>
+
+          <!-- Tumblr -->
+          <div class="proy-card" onclick="openProject('tumblr')">
+            <div class="proy-card-title">Tumblr</div>
+            <div class="proy-card-frames">
+              <div class="proy-frame"><img src="tumblr1.jpg" alt="Tumblr"></div>
+            </div>
+            <p class="proy-card-desc">Video instructivo corto para Tumblr. Desarrollé el concepto, la estructura y la propuesta visual.</p>
+          </div>
+
+          <!-- Ilustraciones -->
+          <div class="proy-card" onclick="openProject('ilustraciones')">
+            <div class="proy-card-title">Ilustraciones</div>
+            <div class="proy-card-frames">
+              <div class="proy-frame"><img src="ilu1.jpg" alt="Ilustraciones"></div>
+            </div>
+            <p class="proy-card-desc">Ilustraciones realizadas en medios tanto digitales como físicos, parte de proyectos personales y de asignaturas. Técnicas de marcadores de alcohol, estilógrafo, Krita y Sketchpad.</p>
+          </div>
+
+          <!-- mutarte -->
+          <div class="proy-card" onclick="openProject('mutarte')">
+            <div class="proy-card-title">Revista: mutarte</div>
+            <div class="proy-card-frames">
+              <div class="proy-frame"><img src="mutarte1.jpg" alt="mutarte"></div>
+            </div>
+            <p class="proy-card-desc">Revista digital bajo metodología Scrum, donde asumí el rol de Scrum Master en un equipo de 20 personas. Coordiné el flujo de trabajo y la comunicación entre áreas.</p>
+          </div>
+
+          <!-- Ñiqui -->
+          <div class="proy-card" onclick="openProject('niqui')">
+            <div class="proy-card-title">Ñiqui</div>
+            <div class="proy-card-frames">
+              <div class="proy-frame"><img src="ñiqui1.jpg" alt="Ñiqui"></div>
+            </div>
+            <p class="proy-card-desc">Creación de una marca y su promoción en redes sociales. Desarrollo de artes y planificación de publicaciones, asegurando coherencia visual y constancia en la comunicación.</p>
+          </div>
+
+        </div>
+        <div class="proy-carousel-arrows">
+          <button onclick="moveProy(-1)">&#8592;</button>
+          <button onclick="moveProy(1)">&#8594;</button>
+        </div>
+      </div>
+      <div class="proy-carousel-nav" id="proy-dots"></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Emily Astor — Diseñadora Digital</p>
+</footer>
+
+<!-- PROJECT PAGES -->
+<div class="project-page" id="page-koishelf">
+  <canvas class="proj-canvas" id="canvas-koishelf"></canvas>
+  <div class="proj-header">
+    <h2>Koishelf</h2>
+    <div class="proj-header-actions">
+      <button class="btn-back" onclick="closeProject()">← Volver</button>
+      <button class="btn-next" onclick="openProject('tumblr')">Tumblr →</button>
+    </div>
+  </div>
+  <div class="proj-body">
+    <p>Proyecto de diseño y desarrollo de una app de lectura de manga. Trabajé en la construcción visual del logo, desarrollando una identidad coherente con la estética del medio.</p>
+    <p>El proceso incluyó investigación de referentes visuales del manga, definición de paleta cromática y tipografía, y la creación de un sistema de iconografía propio para la interfaz.</p>
+    <div class="proj-img-grid">
+      <div class="img-tooltip-wrap" data-tooltip="Imagen del moodboard en el que se basó la marca.">
+        <img src="koishelf1.jpg" alt="Koishelf moodboard">
+      </div>
+      <div class="img-tooltip-wrap" data-tooltip="Imagen de iteraciones del logo.">
+        <img src="koishelf2.jpg" alt="Koishelf iteraciones logo">
+      </div>
+      <div class="img-tooltip-wrap" data-tooltip="Imagen de la app en Android.">
+        <img src="koishelf3.jpg" alt="Koishelf app Android">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="project-page" id="page-tumblr">
+  <canvas class="proj-canvas" id="canvas-tumblr"></canvas>
+  <div class="proj-header">
+    <h2>Tumblr</h2>
+    <div class="proj-header-actions">
+      <button class="btn-back" onclick="closeProject()">← Volver</button>
+      <button class="btn-next" onclick="openProject('ilustraciones')">Ilustraciones →</button>
+    </div>
+  </div>
+  <div class="proj-body">
+    <p>Video instructivo corto para Tumblr. Desarrollé el concepto, la estructura y la propuesta visual completa del proyecto.</p>
+    <p>El trabajo implicó storyboarding, diseño de motion graphics y la edición final del video, manteniendo coherencia con la identidad visual de la plataforma.</p>
+    <div class="proj-img-grid">
+      <div class="img-tooltip-wrap" data-tooltip="Imagen del vídeo instructivo de Tumblr donde se muestra cómo funciona la plataforma.">
+        <img src="tumblr1.jpg" alt="Tumblr cómo funciona">
+      </div>
+      <div class="img-tooltip-wrap" data-tooltip="Imagen del vídeo instructivo de Tumblr donde se ve el logo de Tumblr.">
+        <img src="tumblr2.jpg" alt="Tumblr logo">
+      </div>
+      <div class="img-tooltip-wrap" data-tooltip="El vídeo instructivo de Tumblr.">
+        <video src="tumblr3.mp4" controls></video>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="project-page" id="page-ilustraciones">
+  <canvas class="proj-canvas" id="canvas-ilustraciones"></canvas>
+  <div class="proj-header">
+    <h2>Ilustraciones</h2>
+    <div class="proj-header-actions">
+      <button class="btn-back" onclick="closeProject()">← Volver</button>
+      <button class="btn-next" onclick="openProject('mutarte')">mutarte →</button>
+    </div>
+  </div>
+  <div class="proj-body">
+    <p>Estas ilustraciones fueron realizadas en medios tanto digitales como físicos. La mayoría forma parte de proyectos personales y de asignaturas de materias.</p>
+    <p>Para la parte física se usaron marcadores de alcohol y estilógrafo. Para la parte digital estas fueron las ilustraciones de prueba para programas como Krita y Sketchpad.</p>
+    <div class="proj-img-grid">
+      <div class="img-tooltip-wrap" data-tooltip="Ilustración en físico de uno de los frames del capítulo 6 de Arcane temporada 2, donde se ven a los personajes de Jinx e Isha.">
+        <img src="ilu1.jpg" alt="Arcane Jinx e Isha">
+      </div>
+      <div class="img-tooltip-wrap" data-tooltip="Ilustración física para la materia de Taller de Diseño Gráfico 2. Reinterpretación de la bandera japonesa con viñetas de cómic de Katsuhiro Otomo.">
+        <img src="ilu2.jpeg" alt="Reinterpretación bandera japonesa Otomo">
+      </div>
+      <div class="img-tooltip-wrap" data-tooltip="Ilustración de proyecto personal donde se recrea la portada del ejemplar N°9 de The Walking Dead de Robert Kirkman, mostrando el ojo de un zombie con el reflejo de Rick Grimes.">
+        <img src="ilu3.png" alt="The Walking Dead N°9 portada">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="project-page" id="page-mutarte">
+  <canvas class="proj-canvas" id="canvas-mutarte"></canvas>
+  <div class="proj-header">
+    <h2>Revista: mutarte</h2>
+    <div class="proj-header-actions">
+      <button class="btn-back" onclick="closeProject()">← Volver</button>
+      <button class="btn-next" onclick="openProject('niqui')">Ñiqui →</button>
+    </div>
+  </div>
+  <div class="proj-body">
+    <p>Para este proyecto se nos pidió desarrollar una revista digital. El trabajo se organizó bajo la metodología Scrum, donde asumí el rol de Scrum Master en un equipo de 20 personas.</p>
+    <p>Me encargué de coordinar el flujo de trabajo y facilitar la comunicación entre áreas, asegurando que cada sprint se cumpliera dentro de los tiempos establecidos.</p>
+    <div class="proj-img-grid">
+      <div class="img-tooltip-wrap" data-tooltip="Imagen de los wireframes y layouts usados para el proyecto, así como el diseño final. Se realizó en Figma.">
+        <img src="mutarte1.jpg" alt="mutarte wireframes y diseño final en Figma">
+      </div>
+      <div class="img-tooltip-wrap" data-tooltip="Imagen del moodboard que se usó para el diseño final.">
+        <img src="mutarte2.jpg" alt="mutarte moodboard">
+      </div>
+      <div class="img-tooltip-wrap" data-tooltip="Imagen de la página web final.">
+        <img src="mutarte3.jpg" alt="mutarte página web final">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="project-page" id="page-niqui">
+  <canvas class="proj-canvas" id="canvas-niqui"></canvas>
+  <div class="proj-header">
+    <h2>Ñiqui</h2>
+    <div class="proj-header-actions">
+      <button class="btn-back" onclick="closeProject()">← Volver</button>
+      <button class="btn-next" onclick="openProject('koishelf')">Koishelf →</button>
+    </div>
+  </div>
+  <div class="proj-body">
+    <p>Este proyecto consistió en la creación de una marca y su promoción en redes sociales. Me encargué del desarrollo de los artes y de la planificación y programación de publicaciones.</p>
+    <p>Aseguré coherencia visual y constancia en la comunicación, construyendo una identidad de marca reconocible desde sus primeras publicaciones.</p>
+    <div class="proj-img-grid">
+      <div class="img-tooltip-wrap" data-tooltip="Imagen promocional para Instagram de Ñiqui donde se realiza un juego de bingo.">
+        <img src="ñiqui1.jpg" alt="Ñiqui bingo Instagram">
+      </div>
+      <div class="img-tooltip-wrap" data-tooltip="Imagen promocional para Instagram de Ñiqui donde se hace una comparativa de cómo podría verse una pieza mejorada.">
+        <img src="ñiqui2.jpg" alt="Ñiqui comparativa pieza mejorada">
+      </div>
+      <div class="img-tooltip-wrap" data-tooltip="Vídeo promocional de Ñiqui para Instagram donde se muestran consejos para mejorar el esculpido en torno.">
+        <img src="ñiqui3.jpg" alt="Ñiqui consejos esculpido">
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+<script>
+const globalMouse = new THREE.Vector2(-9999,-9999);
+window.addEventListener('mousemove', e => {
+  globalMouse.x = (e.clientX / innerWidth)*2 - 1;
+  globalMouse.y = -(e.clientY / innerHeight)*2 + 1;
+});
+
+function createScene(canvasId, bgColor, cameraPos, lightColor, lightIntensity) {
+  const canvas = document.getElementById(canvasId);
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias:true, alpha:true });
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+  const scene = new THREE.Scene();
+  if(bgColor) scene.background = new THREE.Color(bgColor);
+  scene.fog = new THREE.FogExp2(bgColor || 0x1a2618, 0.04);
+
+  const camera = new THREE.PerspectiveCamera(55, 1, 0.1, 100);
+  camera.position.copy(cameraPos);
+
+  const amb = new THREE.AmbientLight(0x334422, 1.0);
+  scene.add(amb);
+  const dir = new THREE.DirectionalLight(lightColor || 0xfff5cc, lightIntensity || 2);
+  dir.position.set(5,10,6);
+  dir.castShadow = true;
+  scene.add(dir);
+  const fill = new THREE.PointLight(0x88aaff, 0.6, 30);
+  fill.position.set(-5,3,4);
+  scene.add(fill);
+
+  function resize() {
+    const parent = canvas.parentElement;
+    const w = parent.offsetWidth, h = parent.offsetHeight;
+    renderer.setSize(w, h);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  return { scene, camera, renderer };
+}
+
+const loader = new THREE.GLTFLoader();
+const floorPlane = new THREE.Plane(new THREE.Vector3(0,1,0), 0);
+const raycaster = new THREE.Raycaster();
+
+function loadFlower(scene, modelFile, positions, scaleRange, options = {}) {
+  const flowers = [];
+  const { onLoaded } = options;
+
+  loader.load(modelFile, (gltf) => {
+    positions.forEach(([x, z], i) => {
+      const root = gltf.scene.clone(true);
+      const sc = scaleRange[0] + Math.random() * (scaleRange[1] - scaleRange[0]);
+      root.scale.setScalar(sc);
+      root.position.set(x + (Math.random()-.5)*.4, 0, z + (Math.random()-.5)*.4);
+      root.rotation.y = Math.random() * Math.PI * 2;
+      root.traverse(c => { if(c.isMesh) { c.castShadow = true; c.receiveShadow = true; } });
+      scene.add(root);
+      const head = root.children.length ? root.children[0] : root;
+      flowers.push({ root, head, baseX:x, baseZ:z, scale:sc, phase:Math.random()*Math.PI*2, speed:0.35+Math.random()*0.35 });
+    });
+    if(onLoaded) onLoaded(flowers);
+  }, undefined, () => {
+    positions.forEach(([x, z]) => {
+      const root = new THREE.Group();
+      const h = 1.2 + Math.random()*.8;
+      const stemGeo = new THREE.CylinderGeometry(.025,.04,h,5);
+      const stemMat = new THREE.MeshLambertMaterial({color:0x336622});
+      const stem = new THREE.Mesh(stemGeo,stemMat);
+      stem.position.y = h/2;
+      root.add(stem);
+      const head = new THREE.Group();
+      head.position.y = h;
+      const colors = [0xff4477,0xffffff,0xcc44ff,0xff9922,0x44ccff];
+      const pc = 5 + Math.floor(Math.random()*4);
+      const pColor = colors[Math.floor(Math.random()*colors.length)];
+      for(let p=0;p<pc;p++){
+        const shape = new THREE.Shape();
+        shape.moveTo(0,0);
+        shape.bezierCurveTo(.18,.1,.22,.55,0,.7);
+        shape.bezierCurveTo(-.22,.55,-.18,.1,0,0);
+        const pg = new THREE.ShapeGeometry(shape,8);
+        const pm = new THREE.MeshLambertMaterial({color:pColor,side:THREE.DoubleSide,transparent:true,opacity:.9});
+        const pe = new THREE.Mesh(pg,pm);
+        pe.rotation.z = (p/pc)*Math.PI*2;
+        pe.rotation.x = -.3;
+        head.add(pe);
+      }
+      const disc = new THREE.Mesh(new THREE.CircleGeometry(.16,12), new THREE.MeshLambertMaterial({color:0xffee44,side:THREE.DoubleSide}));
+      disc.rotation.x = -Math.PI/2+.05;
+      disc.position.y = .01;
+      head.add(disc);
+      root.add(head);
+      const sc = .7 + Math.random()*.5;
+      root.scale.setScalar(sc);
+      root.position.set(x+(Math.random()-.5)*.4,0,z+(Math.random()-.5)*.4);
+      root.rotation.y = Math.random()*Math.PI*2;
+      scene.add(root);
+      flowers.push({ root, head, baseX:x, baseZ:z, scale:sc, phase:Math.random()*Math.PI*2, speed:.35+Math.random()*.35 });
+    });
+    if(onLoaded) onLoaded(flowers);
+  });
+  return flowers;
+}
+
+function animateFlowers(flowers, camera, t) {
+  const mouseWorld = new THREE.Vector3();
+  raycaster.setFromCamera(globalMouse, camera);
+  raycaster.ray.intersectPlane(floorPlane, mouseWorld);
+  const RADIUS = 3.5, LEAN = 0.28;
+  flowers.forEach(f => {
+    const dx = mouseWorld.x - f.baseX, dz = mouseWorld.z - f.baseZ;
+    const dist = Math.sqrt(dx*dx+dz*dz);
+    const inf = Math.max(0, 1 - dist/RADIUS);
+    const hDir = dist > .01 ? Math.atan2(dz,dx) : 0;
+    const bX = Math.sin(t*f.speed+f.phase)*0.06;
+    const bZ = Math.cos(t*f.speed*.7+f.phase+1.2)*0.045;
+    const pX = inf*LEAN*Math.cos(hDir-Math.PI)*.55 + bX;
+    const pZ = inf*LEAN*Math.sin(hDir-Math.PI)*.55 + bZ;
+    f.root.rotation.x += (pZ - f.root.rotation.x) * .06;
+    f.root.rotation.z += (-pX - f.root.rotation.z) * .06;
+    if(f.head) f.head.rotation.z = Math.sin(t*f.speed*1.3+f.phase)*.04;
+    const ts = f.scale * (1 + inf*.07);
+    f.root.scale.x += (ts - f.root.scale.x)*.08;
+    f.root.scale.y = f.root.scale.x;
+    f.root.scale.z = f.root.scale.x;
+  });
+}
+
+// ── HERO ──
+(function(){
+  const { scene, camera, renderer } = createScene('hero-canvas', null, new THREE.Vector3(3.2, 4.8, 3.5), 0xfff5cc, 2.8);
+  scene.background = null;
+  camera.lookAt(3, 3.8, 0);
+  const heroFlowers = [];
+  loadFlower(scene,'daisies.glb',[[3.2,0]],[3.5,3.5],{onLoaded:fl=>heroFlowers.push(...fl)});
+  let t=0;
+  (function loop(){
+    requestAnimationFrame(loop);
+    t+=.01;
+    animateFlowers(heroFlowers,camera,t);
+    camera.position.x = 3.2 + Math.sin(t*.07)*.12;
+    camera.position.y = 4.8 + Math.sin(t*.11)*.08;
+    camera.lookAt(3, 3.8, 0);
+    renderer.render(scene,camera);
+  })();
+})();
+
+// ── HOLA ──
+(function(){
+  const { scene, camera, renderer } = createScene('hola-canvas', null, new THREE.Vector3(3.8, 5.0, 3.2), 0xd4f0b0, 2.0);
+  scene.background = null;
+  camera.lookAt(3.5, 3.8, 0);
+  const holaFlowers = [];
+  loadFlower(scene,'lilyotv.glb',[[3.5,0]],[3.2,3.2],{onLoaded:fl=>holaFlowers.push(...fl)});
+  let t=0;
+  (function loop(){
+    requestAnimationFrame(loop);
+    t+=.01;
+    animateFlowers(holaFlowers,camera,t);
+    camera.position.x = 3.8 + Math.sin(t*.08)*.1;
+    camera.lookAt(3.5, 3.8, 0);
+    renderer.render(scene,camera);
+  })();
+})();
+
+// ── PROYECTOS ──
+(function(){
+  const { scene, camera, renderer } = createScene('proy-canvas', null, new THREE.Vector3(-3.0, 4.8, 3.5), 0xfff0cc, 2.2);
+  scene.background = null;
+  camera.lookAt(-3.2, 3.8, 0);
+  const proyFlowers = [];
+  loadFlower(scene,'lirio.glb',[[-3.2,0]],[3.0,3.0],{onLoaded:fl=>proyFlowers.push(...fl)});
+  let t=0;
+  (function loop(){
+    requestAnimationFrame(loop);
+    t+=.01;
+    animateFlowers(proyFlowers,camera,t);
+    camera.position.x = -3.0 + Math.sin(t*.09)*.1;
+    camera.lookAt(-3.2, 3.8, 0);
+    renderer.render(scene,camera);
+  })();
+})();
+
+// ── PÁGINAS DE PROYECTO: venus.glb (lazy) ──
+const venusScenes = {};
+
+function initVenusScene(canvasId) {
+  if (venusScenes[canvasId]) return;
+  venusScenes[canvasId] = true;
+  const { scene, camera, renderer } = createScene(canvasId, null, new THREE.Vector3(3.2, 4.8, 3.5), 0xfff5cc, 2.5);
+  scene.background = null;
+  camera.lookAt(3, 3.8, 0);
+  const venusFlowers = [];
+  loadFlower(scene, 'venus.glb', [[3.2, 0]], [3.5, 3.5], { onLoaded: fl => venusFlowers.push(...fl) });
+  let t = 0;
+  (function loop() {
+    requestAnimationFrame(loop);
+    t += .01;
+    animateFlowers(venusFlowers, camera, t);
+    camera.position.x = 3.2 + Math.sin(t * .07) * .12;
+    camera.position.y = 4.8 + Math.sin(t * .11) * .08;
+    camera.lookAt(3, 3.8, 0);
+    renderer.render(scene, camera);
+  })();
+}
+
+// Carrusel
+let proySlide=0;
+const proyCards=document.querySelectorAll('.proy-card');
+const proyTrack=document.getElementById('proy-carousel');
+const proyDots=document.getElementById('proy-dots');
+const proyTotal=proyCards.length;
+proyCards.forEach((_,i)=>{
+  const dot=document.createElement('button'); dot.className='proy-dot'+(i===0?' active':'');
+  dot.onclick=()=>goToProy(i); proyDots.appendChild(dot);
+});
+function goToProy(n){ proySlide=(n+proyTotal)%proyTotal; proyTrack.style.transform=`translateX(-${proySlide*100}%)`; document.querySelectorAll('.proy-dot').forEach((d,i)=>d.classList.toggle('active',i===proySlide)); }
+function moveProy(dir){ goToProy(proySlide+dir); }
+setInterval(()=>moveProy(1),4500);
+
+const projectCanvasMap = {
+  'koishelf':       'canvas-koishelf',
+  'tumblr':         'canvas-tumblr',
+  'ilustraciones':  'canvas-ilustraciones',
+  'mutarte':        'canvas-mutarte',
+  'niqui':          'canvas-niqui',
+};
+
+function openProject(id){
+  document.querySelectorAll('.project-page.active').forEach(p=>p.classList.remove('active'));
+  const p = document.getElementById('page-' + id);
+  if (p) {
+    p.classList.add('active');
+    p.scrollTop = 0;
+    document.body.style.overflow = 'hidden';
+    const canvasId = projectCanvasMap[id];
+    if (canvasId) initVenusScene(canvasId);
+  }
+}
+function closeProject(){ document.querySelectorAll('.project-page.active').forEach(p=>p.classList.remove('active')); document.body.style.overflow=''; }
+
+const revealEls=document.querySelectorAll('.reveal');
+const obs=new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting)e.target.classList.add('visible'); }); },{threshold:.15});
+revealEls.forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
