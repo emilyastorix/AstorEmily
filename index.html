@@ -77,6 +77,28 @@
   .social-art { background:#2a2a2a !important; }
   .social-ig { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%) !important; }
 
+  .lang-toggle {
+    margin-top: 18px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(159,193,100,0.12);
+    border: 1px solid var(--verde-claro);
+    color: var(--verde-claro);
+    padding: 10px 22px;
+    border-radius: 24px;
+    cursor: pointer;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .lang-toggle:hover { background: rgba(159,193,100,0.25); transform: scale(1.04); }
+  .lang-toggle:active { transform: scale(0.98); }
+  .lang-toggle .lang-icon { font-size: 1rem; line-height:1; }
+
   /* ── HOLA ── */
   #hola {
     position:relative; overflow:hidden;
@@ -304,9 +326,9 @@
 <nav>
   <div class="logo-area"><img src="Logo.svg" alt="Emily Astor"></div>
   <ul>
-    <li><a href="#hero">Inicio</a></li>
-    <li><a href="#hola">Hola</a></li>
-    <li><a href="#proyectos">Proyectos</a></li>
+    <li><a href="#hero" data-i18n="nav-inicio">Inicio</a></li>
+    <li><a href="#hola" data-i18n="nav-hola">Hola</a></li>
+    <li><a href="#proyectos" data-i18n="nav-proyectos">Proyectos</a></li>
   </ul>
 </nav>
 
@@ -317,7 +339,7 @@
     <h1>PORTA<br>FOLIO</h1>
     <p class="subtitle">Emily Astor</p>
     <div class="hero-contacto">
-      <p>Contáctame</p>
+      <p data-i18n="contactame">Contáctame</p>
       <div class="social-icons">
         <!-- X / Twitter -->
         <a href="https://x.com/AstorEmily23" target="_blank" rel="noopener" class="social-x" title="X / Twitter">
@@ -332,6 +354,9 @@
           <svg viewBox="0 0 24 24" width="26" height="26" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
         </a>
       </div>
+      <button class="lang-toggle" id="langToggle" onclick="toggleLang()" type="button">
+        <span class="lang-icon">&#9737;</span><span id="langToggleLabel">EN</span>
+      </button>
     </div>
   </div>
 </section>
@@ -343,18 +368,18 @@
 
     <!-- Col 1: Bio -->
     <div class="hola-col reveal">
-      <h2>Hola</h2>
-      <p>Soy Emily Astor, diseñadora digital enfocada en la creación de experiencias visuales con un enfoque artesanal. Mi trabajo surge de un proceso creativo alimentado por todo lo que he observado y consumido a lo largo del tiempo, entendiendo el arte como un diálogo constante entre referencias y transformación.</p>
+      <h2 data-i18n="hola-title">Hola</h2>
+      <p data-i18n="bio-p1">Soy Emily Astor, diseñadora digital enfocada en la creación de experiencias visuales con un enfoque artesanal. Mi trabajo surge de un proceso creativo alimentado por todo lo que he observado y consumido a lo largo del tiempo, entendiendo el arte como un diálogo constante entre referencias y transformación.</p>
       <br>
-      <p>Me interesa explorar distintas técnicas y métodos, incluso aquellos que se sitúan fuera de lo digital, incorporándolos a mi práctica. Para mí, enfrentarme a un proyecto cuya metodología desconozco no es un obstáculo, sino una oportunidad para aprender.</p>
+      <p data-i18n="bio-p2">Me interesa explorar distintas técnicas y métodos, incluso aquellos que se sitúan fuera de lo digital, incorporándolos a mi práctica. Para mí, enfrentarme a un proyecto cuya metodología desconozco no es un obstáculo, sino una oportunidad para aprender.</p>
     </div>
 
     <!-- Col 2: Habilidades -->
     <div class="hola-col reveal" style="transition-delay:0.15s">
-      <h3>Habilidades</h3>
-      <p class="skills-label">Idiomas</p>
-      <p class="skills-list">Español<br>Inglés</p>
-      <p class="skills-label">Programas</p>
+      <h3 data-i18n="habilidades">Habilidades</h3>
+      <p class="skills-label" data-i18n="idiomas-label">Idiomas</p>
+      <p class="skills-list" data-i18n="idiomas-list">Español<br>Inglés</p>
+      <p class="skills-label" data-i18n="programas-label">Programas</p>
       <div class="prog-grid">
 
         <!-- Adobe Illustrator -->
@@ -398,23 +423,23 @@
 
     <!-- Col 3: Formación -->
     <div class="hola-col formacion-col reveal" style="transition-delay:0.3s">
-      <h3>Formación</h3>
+      <h3 data-i18n="formacion-title">Formación</h3>
 
       <div class="formacion-item">
-        <p class="fi-year">Educación secundaria</p>
+        <p class="fi-year" data-i18n="edu-sec-label">Educación secundaria</p>
         <p>Unidad Educativa<br>Americano Obrajes</p>
       </div>
       <div class="formacion-divider"></div>
 
       <div class="formacion-item">
-        <p class="fi-year">Educación superior</p>
+        <p class="fi-year" data-i18n="edu-sup-label">Educación superior</p>
         <p>Universidad Católica<br>"San Pablo"</p>
       </div>
       <div class="formacion-divider"></div>
 
       <div class="formacion-item">
-        <p class="fi-year">Autodidacta</p>
-        <p>Ilustración<br>de manera autodidacta</p>
+        <p class="fi-year" data-i18n="autodidacta-label">Autodidacta</p>
+        <p data-i18n="autodidacta-text">Ilustración<br>de manera autodidacta</p>
       </div>
 
     </div>
@@ -425,8 +450,8 @@
 <section id="proyectos">
   <canvas id="proy-canvas"></canvas>
   <div style="position:relative;z-index:2;">
-    <h2 class="reveal">Proyectos</h2>
-    <p class="intro-text reveal" style="transition-delay:0.1s">Los siguientes proyectos fueron desarrollados a lo largo de mi formación académica, cada uno bajo consignas, tiempos de entrega y parámetros específicos. Estas condiciones no solo fueron cumplidas, sino que también funcionaron como punto de partida para explorar distintas soluciones y enfoques dentro de cada propuesta.</p>
+    <h2 class="reveal" data-i18n="proyectos-title">Proyectos</h2>
+    <p class="intro-text reveal" style="transition-delay:0.1s" data-i18n="proyectos-intro">Los siguientes proyectos fueron desarrollados a lo largo de mi formación académica, cada uno bajo consignas, tiempos de entrega y parámetros específicos. Estas condiciones no solo fueron cumplidas, sino que también funcionaron como punto de partida para explorar distintas soluciones y enfoques dentro de cada propuesta.</p>
 
     <div class="reveal" style="position:relative; transition-delay:0.2s">
       <div class="proy-carousel-outer">
@@ -438,7 +463,7 @@
             <div class="proy-card-frames">
               <div class="proy-frame"><img src="koishelf1.jpg" alt="Koishelf"></div>
             </div>
-            <p class="proy-card-desc">Proyecto de diseño y desarrollo de una app de lectura de manga. Trabajé en la construcción visual del logo, desarrollando una identidad coherente con la estética del medio.</p>
+            <p class="proy-card-desc" data-i18n="card-desc-koishelf">Proyecto de diseño y desarrollo de una app de lectura de manga. Trabajé en la construcción visual del logo, desarrollando una identidad coherente con la estética del medio.</p>
           </div>
 
           <!-- Tumblr -->
@@ -447,25 +472,25 @@
             <div class="proy-card-frames">
               <div class="proy-frame"><img src="tumblr1.jpg" alt="Tumblr"></div>
             </div>
-            <p class="proy-card-desc">Video instructivo corto para Tumblr. Desarrollé el concepto, la estructura y la propuesta visual.</p>
+            <p class="proy-card-desc" data-i18n="card-desc-tumblr">Video instructivo corto para Tumblr. Desarrollé el concepto, la estructura y la propuesta visual.</p>
           </div>
 
           <!-- Ilustraciones -->
           <div class="proy-card" onclick="openProject('ilustraciones')">
-            <div class="proy-card-title">Ilustraciones</div>
+            <div class="proy-card-title" data-i18n="card-title-ilustraciones">Ilustraciones</div>
             <div class="proy-card-frames">
               <div class="proy-frame"><img src="ilu1.jpg" alt="Ilustraciones"></div>
             </div>
-            <p class="proy-card-desc">Ilustraciones realizadas en medios tanto digitales como físicos, parte de proyectos personales y de asignaturas. Técnicas de marcadores de alcohol, estilógrafo, Krita y Sketchpad.</p>
+            <p class="proy-card-desc" data-i18n="card-desc-ilustraciones">Ilustraciones realizadas en medios tanto digitales como físicos, parte de proyectos personales y de asignaturas. Técnicas de marcadores de alcohol, estilógrafo, Krita y Sketchpad.</p>
           </div>
 
           <!-- mutarte -->
           <div class="proy-card" onclick="openProject('mutarte')">
-            <div class="proy-card-title">Revista: mutarte</div>
+            <div class="proy-card-title" data-i18n="card-title-mutarte">Revista: mutarte</div>
             <div class="proy-card-frames">
               <div class="proy-frame"><img src="mutarte1.jpg" alt="mutarte"></div>
             </div>
-            <p class="proy-card-desc">Revista digital bajo metodología Scrum, donde asumí el rol de Scrum Master en un equipo de 20 personas. Coordiné el flujo de trabajo y la comunicación entre áreas.</p>
+            <p class="proy-card-desc" data-i18n="card-desc-mutarte">Revista digital bajo metodología Scrum, donde asumí el rol de Scrum Master en un equipo de 20 personas. Coordiné el flujo de trabajo y la comunicación entre áreas.</p>
           </div>
 
           <!-- Ñiqui -->
@@ -474,7 +499,7 @@
             <div class="proy-card-frames">
               <div class="proy-frame"><img src="ñiqui1.jpg" alt="Ñiqui"></div>
             </div>
-            <p class="proy-card-desc">Creación de una marca y su promoción en redes sociales. Desarrollo de artes y planificación de publicaciones, asegurando coherencia visual y constancia en la comunicación.</p>
+            <p class="proy-card-desc" data-i18n="card-desc-niqui">Creación de una marca y su promoción en redes sociales. Desarrollo de artes y planificación de publicaciones, asegurando coherencia visual y constancia en la comunicación.</p>
           </div>
 
         </div>
@@ -489,7 +514,7 @@
 </section>
 
 <footer>
-  <p>© 2025 Emily Astor — Diseñadora Digital</p>
+  <p data-i18n="footer-text">© 2025 Emily Astor — Diseñadora Digital</p>
 </footer>
 
 <!-- PROJECT PAGES -->
@@ -498,21 +523,21 @@
   <div class="proj-header">
     <h2>Koishelf</h2>
     <div class="proj-header-actions">
-      <button class="btn-back" onclick="closeProject()">← Volver</button>
+      <button class="btn-back" data-i18n="btn-back" onclick="closeProject()">← Volver</button>
       <button class="btn-next" onclick="openProject('tumblr')">Tumblr →</button>
     </div>
   </div>
   <div class="proj-body">
-    <p>Proyecto de diseño y desarrollo de una app de lectura de manga. Trabajé en la construcción visual del logo, desarrollando una identidad coherente con la estética del medio.</p>
-    <p>El proceso incluyó investigación de referentes visuales del manga, definición de paleta cromática y tipografía, y la creación de un sistema de iconografía propio para la interfaz.</p>
+    <p data-i18n="koishelf-p1">Proyecto de diseño y desarrollo de una app de lectura de manga. Trabajé en la construcción visual del logo, desarrollando una identidad coherente con la estética del medio.</p>
+    <p data-i18n="koishelf-p2">El proceso incluyó investigación de referentes visuales del manga, definición de paleta cromática y tipografía, y la creación de un sistema de iconografía propio para la interfaz.</p>
     <div class="proj-img-grid">
-      <div class="img-tooltip-wrap" data-tooltip="Imagen del moodboard en el que se basó la marca.">
+      <div class="img-tooltip-wrap" data-tooltip="Imagen del moodboard en el que se basó la marca." data-tooltip-en="Image of the moodboard the brand was based on.">
         <img src="koishelf1.jpg" alt="Koishelf moodboard">
       </div>
-      <div class="img-tooltip-wrap" data-tooltip="Imagen de iteraciones del logo.">
+      <div class="img-tooltip-wrap" data-tooltip="Imagen de iteraciones del logo." data-tooltip-en="Image of the logo iterations.">
         <img src="koishelf2.jpg" alt="Koishelf iteraciones logo">
       </div>
-      <div class="img-tooltip-wrap" data-tooltip="Imagen de la app en Android.">
+      <div class="img-tooltip-wrap" data-tooltip="Imagen de la app en Android." data-tooltip-en="Image of the app on Android.">
         <img src="koishelf3.jpg" alt="Koishelf app Android">
       </div>
     </div>
@@ -524,21 +549,21 @@
   <div class="proj-header">
     <h2>Tumblr</h2>
     <div class="proj-header-actions">
-      <button class="btn-back" onclick="closeProject()">← Volver</button>
-      <button class="btn-next" onclick="openProject('ilustraciones')">Ilustraciones →</button>
+      <button class="btn-back" data-i18n="btn-back" onclick="closeProject()">← Volver</button>
+      <button class="btn-next" data-i18n="btn-next-ilustraciones" onclick="openProject('ilustraciones')">Ilustraciones →</button>
     </div>
   </div>
   <div class="proj-body">
-    <p>Video instructivo corto para Tumblr. Desarrollé el concepto, la estructura y la propuesta visual completa del proyecto.</p>
-    <p>El trabajo implicó storyboarding, diseño de motion graphics y la edición final del video, manteniendo coherencia con la identidad visual de la plataforma.</p>
+    <p data-i18n="tumblr-p1">Video instructivo corto para Tumblr. Desarrollé el concepto, la estructura y la propuesta visual completa del proyecto.</p>
+    <p data-i18n="tumblr-p2">El trabajo implicó storyboarding, diseño de motion graphics y la edición final del video, manteniendo coherencia con la identidad visual de la plataforma.</p>
     <div class="proj-img-grid">
-      <div class="img-tooltip-wrap" data-tooltip="Imagen del vídeo instructivo de Tumblr donde se muestra cómo funciona la plataforma.">
+      <div class="img-tooltip-wrap" data-tooltip="Imagen del vídeo instructivo de Tumblr donde se muestra cómo funciona la plataforma." data-tooltip-en="Image from the Tumblr instructional video showing how the platform works.">
         <img src="tumblr1.jpg" alt="Tumblr cómo funciona">
       </div>
-      <div class="img-tooltip-wrap" data-tooltip="Imagen del vídeo instructivo de Tumblr donde se ve el logo de Tumblr.">
+      <div class="img-tooltip-wrap" data-tooltip="Imagen del vídeo instructivo de Tumblr donde se ve el logo de Tumblr." data-tooltip-en="Image from the Tumblr instructional video showing the Tumblr logo.">
         <img src="tumblr2.jpg" alt="Tumblr logo">
       </div>
-      <div class="img-tooltip-wrap" data-tooltip="El vídeo instructivo de Tumblr.">
+      <div class="img-tooltip-wrap" data-tooltip="El vídeo instructivo de Tumblr." data-tooltip-en="The Tumblr instructional video.">
         <video src="tumblr3.mp4" controls></video>
       </div>
     </div>
@@ -548,23 +573,23 @@
 <div class="project-page" id="page-ilustraciones">
   <canvas class="proj-canvas" id="canvas-ilustraciones"></canvas>
   <div class="proj-header">
-    <h2>Ilustraciones</h2>
+    <h2 data-i18n="card-title-ilustraciones">Ilustraciones</h2>
     <div class="proj-header-actions">
-      <button class="btn-back" onclick="closeProject()">← Volver</button>
+      <button class="btn-back" data-i18n="btn-back" onclick="closeProject()">← Volver</button>
       <button class="btn-next" onclick="openProject('mutarte')">mutarte →</button>
     </div>
   </div>
   <div class="proj-body">
-    <p>Estas ilustraciones fueron realizadas en medios tanto digitales como físicos. La mayoría forma parte de proyectos personales y de asignaturas de materias.</p>
-    <p>Para la parte física se usaron marcadores de alcohol y estilógrafo. Para la parte digital estas fueron las ilustraciones de prueba para programas como Krita y Sketchpad.</p>
+    <p data-i18n="ilustraciones-p1">Estas ilustraciones fueron realizadas en medios tanto digitales como físicos. La mayoría forma parte de proyectos personales y de asignaturas de materias.</p>
+    <p data-i18n="ilustraciones-p2">Para la parte física se usaron marcadores de alcohol y estilógrafo. Para la parte digital estas fueron las ilustraciones de prueba para programas como Krita y Sketchpad.</p>
     <div class="proj-img-grid">
-      <div class="img-tooltip-wrap" data-tooltip="Ilustración en físico de uno de los frames del capítulo 6 de Arcane temporada 2, donde se ven a los personajes de Jinx e Isha.">
+      <div class="img-tooltip-wrap" data-tooltip="Ilustración en físico de uno de los frames del capítulo 6 de Arcane temporada 2, donde se ven a los personajes de Jinx e Isha." data-tooltip-en="Physical illustration of a frame from episode 6 of Arcane season 2, featuring the characters Jinx and Isha.">
         <img src="ilu1.jpg" alt="Arcane Jinx e Isha">
       </div>
-      <div class="img-tooltip-wrap" data-tooltip="Ilustración física para la materia de Taller de Diseño Gráfico 2. Reinterpretación de la bandera japonesa con viñetas de cómic de Katsuhiro Otomo.">
+      <div class="img-tooltip-wrap" data-tooltip="Ilustración física para la materia de Taller de Diseño Gráfico 2. Reinterpretación de la bandera japonesa con viñetas de cómic de Katsuhiro Otomo." data-tooltip-en="Physical illustration for the Graphic Design Workshop 2 course. A reinterpretation of the Japanese flag using comic panels by Katsuhiro Otomo.">
         <img src="ilu2.jpeg" alt="Reinterpretación bandera japonesa Otomo">
       </div>
-      <div class="img-tooltip-wrap" data-tooltip="Ilustración de proyecto personal donde se recrea la portada del ejemplar N°9 de The Walking Dead de Robert Kirkman, mostrando el ojo de un zombie con el reflejo de Rick Grimes.">
+      <div class="img-tooltip-wrap" data-tooltip="Ilustración de proyecto personal donde se recrea la portada del ejemplar N°9 de The Walking Dead de Robert Kirkman, mostrando el ojo de un zombie con el reflejo de Rick Grimes." data-tooltip-en="Personal project illustration recreating the cover of issue No. 9 of Robert Kirkman's The Walking Dead, showing a zombie's eye reflecting Rick Grimes.">
         <img src="ilu3.png" alt="The Walking Dead N°9 portada">
       </div>
     </div>
@@ -574,23 +599,23 @@
 <div class="project-page" id="page-mutarte">
   <canvas class="proj-canvas" id="canvas-mutarte"></canvas>
   <div class="proj-header">
-    <h2>Revista: mutarte</h2>
+    <h2 data-i18n="card-title-mutarte">Revista: mutarte</h2>
     <div class="proj-header-actions">
-      <button class="btn-back" onclick="closeProject()">← Volver</button>
+      <button class="btn-back" data-i18n="btn-back" onclick="closeProject()">← Volver</button>
       <button class="btn-next" onclick="openProject('niqui')">Ñiqui →</button>
     </div>
   </div>
   <div class="proj-body">
-    <p>Para este proyecto se nos pidió desarrollar una revista digital. El trabajo se organizó bajo la metodología Scrum, donde asumí el rol de Scrum Master en un equipo de 20 personas.</p>
-    <p>Me encargué de coordinar el flujo de trabajo y facilitar la comunicación entre áreas, asegurando que cada sprint se cumpliera dentro de los tiempos establecidos.</p>
+    <p data-i18n="mutarte-p1">Para este proyecto se nos pidió desarrollar una revista digital. El trabajo se organizó bajo la metodología Scrum, donde asumí el rol de Scrum Master en un equipo de 20 personas.</p>
+    <p data-i18n="mutarte-p2">Me encargué de coordinar el flujo de trabajo y facilitar la comunicación entre áreas, asegurando que cada sprint se cumpliera dentro de los tiempos establecidos.</p>
     <div class="proj-img-grid">
-      <div class="img-tooltip-wrap" data-tooltip="Imagen de los wireframes y layouts usados para el proyecto, así como el diseño final. Se realizó en Figma.">
+      <div class="img-tooltip-wrap" data-tooltip="Imagen de los wireframes y layouts usados para el proyecto, así como el diseño final. Se realizó en Figma." data-tooltip-en="Image of the wireframes and layouts used for the project, along with the final design. Made in Figma.">
         <img src="mutarte1.jpg" alt="mutarte wireframes y diseño final en Figma">
       </div>
-      <div class="img-tooltip-wrap" data-tooltip="Imagen del moodboard que se usó para el diseño final.">
+      <div class="img-tooltip-wrap" data-tooltip="Imagen del moodboard que se usó para el diseño final." data-tooltip-en="Image of the moodboard used for the final design.">
         <img src="mutarte2.jpg" alt="mutarte moodboard">
       </div>
-      <div class="img-tooltip-wrap" data-tooltip="Imagen de la página web final.">
+      <div class="img-tooltip-wrap" data-tooltip="Imagen de la página web final." data-tooltip-en="Image of the final website.">
         <img src="mutarte3.jpg" alt="mutarte página web final">
       </div>
     </div>
@@ -602,21 +627,21 @@
   <div class="proj-header">
     <h2>Ñiqui</h2>
     <div class="proj-header-actions">
-      <button class="btn-back" onclick="closeProject()">← Volver</button>
+      <button class="btn-back" data-i18n="btn-back" onclick="closeProject()">← Volver</button>
       <button class="btn-next" onclick="openProject('koishelf')">Koishelf →</button>
     </div>
   </div>
   <div class="proj-body">
-    <p>Este proyecto consistió en la creación de una marca y su promoción en redes sociales. Me encargué del desarrollo de los artes y de la planificación y programación de publicaciones.</p>
-    <p>Aseguré coherencia visual y constancia en la comunicación, construyendo una identidad de marca reconocible desde sus primeras publicaciones.</p>
+    <p data-i18n="niqui-p1">Este proyecto consistió en la creación de una marca y su promoción en redes sociales. Me encargué del desarrollo de los artes y de la planificación y programación de publicaciones.</p>
+    <p data-i18n="niqui-p2">Aseguré coherencia visual y constancia en la comunicación, construyendo una identidad de marca reconocible desde sus primeras publicaciones.</p>
     <div class="proj-img-grid">
-      <div class="img-tooltip-wrap" data-tooltip="Imagen promocional para Instagram de Ñiqui donde se realiza un juego de bingo.">
+      <div class="img-tooltip-wrap" data-tooltip="Imagen promocional para Instagram de Ñiqui donde se realiza un juego de bingo." data-tooltip-en="Instagram promotional image for Ñiqui featuring a bingo game.">
         <img src="ñiqui1.jpg" alt="Ñiqui bingo Instagram">
       </div>
-      <div class="img-tooltip-wrap" data-tooltip="Imagen promocional para Instagram de Ñiqui donde se hace una comparativa de cómo podría verse una pieza mejorada.">
+      <div class="img-tooltip-wrap" data-tooltip="Imagen promocional para Instagram de Ñiqui donde se hace una comparativa de cómo podría verse una pieza mejorada." data-tooltip-en="Instagram promotional image for Ñiqui comparing how an improved piece could look.">
         <img src="ñiqui2.jpg" alt="Ñiqui comparativa pieza mejorada">
       </div>
-      <div class="img-tooltip-wrap" data-tooltip="Vídeo promocional de Ñiqui para Instagram donde se muestran consejos para mejorar el esculpido en torno.">
+      <div class="img-tooltip-wrap" data-tooltip="Vídeo promocional de Ñiqui para Instagram donde se muestran consejos para mejorar el esculpido en torno." data-tooltip-en="Promotional video for Ñiqui on Instagram showing tips to improve wood-turning carving.">
         <img src="ñiqui3.jpg" alt="Ñiqui consejos esculpido">
       </div>
     </div>
@@ -873,6 +898,81 @@ function closeProject(){ document.querySelectorAll('.project-page.active').forEa
 const revealEls=document.querySelectorAll('.reveal');
 const obs=new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting)e.target.classList.add('visible'); }); },{threshold:.15});
 revealEls.forEach(el=>obs.observe(el));
+
+// ── TOGGLE DE IDIOMA ES / EN ──
+const translationsEN = {
+  'nav-inicio': 'Home',
+  'nav-hola': 'About',
+  'nav-proyectos': 'Projects',
+  'contactame': 'Contact me',
+  'hola-title': 'Hello',
+  'bio-p1': "I'm Emily Astor, a digital designer focused on creating visual experiences with a handcrafted approach. My work comes from a creative process fueled by everything I've observed and absorbed over time, understanding art as a constant dialogue between references and transformation.",
+  'bio-p2': "I enjoy exploring different techniques and methods, even those outside the digital realm, bringing them into my practice. For me, taking on a project whose methodology I don't yet know isn't an obstacle, but an opportunity to learn.",
+  'habilidades': 'Skills',
+  'idiomas-label': 'Languages',
+  'idiomas-list': 'Spanish<br>English',
+  'programas-label': 'Software',
+  'formacion-title': 'Education',
+  'edu-sec-label': 'Secondary education',
+  'edu-sup-label': 'Higher education',
+  'autodidacta-label': 'Self-taught',
+  'autodidacta-text': 'Illustration<br>self-taught',
+  'proyectos-title': 'Projects',
+  'proyectos-intro': "The following projects were developed throughout my academic training, each under specific briefs, deadlines, and parameters. These conditions were not only met, but also served as a starting point to explore different solutions and approaches within each proposal.",
+  'card-title-ilustraciones': 'Illustrations',
+  'card-title-mutarte': 'Magazine: mutarte',
+  'card-desc-koishelf': "Design and development project for a manga reading app. I worked on the visual construction of the logo, developing an identity consistent with the medium's aesthetic.",
+  'card-desc-tumblr': 'Short instructional video for Tumblr. I developed the concept, structure, and visual proposal.',
+  'card-desc-ilustraciones': 'Illustrations made in both digital and physical media, part of personal and coursework projects. Techniques include alcohol markers, technical pen, Krita, and Sketchpad.',
+  'card-desc-mutarte': 'Digital magazine built using the Scrum methodology, where I took on the role of Scrum Master for a team of 20 people. I coordinated workflow and communication between areas.',
+  'card-desc-niqui': 'Creation of a brand and its social media promotion. Development of graphics and post planning, ensuring visual consistency and steady communication.',
+  'footer-text': '© 2025 Emily Astor — Digital Designer',
+  'btn-back': '← Back',
+  'btn-next-ilustraciones': 'Illustrations →',
+  'koishelf-p1': "Design and development project for a manga reading app. I worked on the visual construction of the logo, developing an identity consistent with the medium's aesthetic.",
+  'koishelf-p2': 'The process included researching manga visual references, defining a color palette and typography, and creating a custom iconography system for the interface.',
+  'tumblr-p1': "Short instructional video for Tumblr. I developed the concept, structure, and the project's complete visual proposal.",
+  'tumblr-p2': "The work involved storyboarding, motion graphics design, and the final video edit, maintaining consistency with the platform's visual identity.",
+  'ilustraciones-p1': 'These illustrations were made in both digital and physical media. Most of them are part of personal projects and coursework.',
+  'ilustraciones-p2': 'For the physical pieces, alcohol markers and a technical pen were used. For the digital ones, these were test illustrations for programs like Krita and Sketchpad.',
+  'mutarte-p1': 'For this project we were asked to develop a digital magazine. The work was organized under the Scrum methodology, where I took on the role of Scrum Master for a team of 20 people.',
+  'mutarte-p2': 'I was in charge of coordinating the workflow and facilitating communication between areas, making sure each sprint was completed within the established timelines.',
+  'niqui-p1': 'This project involved creating a brand and promoting it on social media. I was responsible for developing the graphics and planning and scheduling posts.',
+  'niqui-p2': "I ensured visual consistency and steady communication, building a recognizable brand identity from its very first posts.",
+};
+
+let currentLang = 'es';
+
+function applyLang(lang){
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    if(el.dataset.esOriginal === undefined) el.dataset.esOriginal = el.innerHTML;
+    const key = el.getAttribute('data-i18n');
+    if(lang === 'en' && translationsEN[key] !== undefined){
+      el.innerHTML = translationsEN[key];
+    } else {
+      el.innerHTML = el.dataset.esOriginal;
+    }
+  });
+
+  document.querySelectorAll('[data-tooltip-en]').forEach(el=>{
+    if(el.dataset.tooltipEs === undefined) el.dataset.tooltipEs = el.getAttribute('data-tooltip');
+    if(lang === 'en'){
+      el.setAttribute('data-tooltip', el.getAttribute('data-tooltip-en'));
+    } else {
+      el.setAttribute('data-tooltip', el.dataset.tooltipEs);
+    }
+  });
+
+  document.documentElement.lang = lang;
+  const label = document.getElementById('langToggleLabel');
+  if(label) label.textContent = (lang === 'es') ? 'EN' : 'ES';
+  currentLang = lang;
+}
+
+function toggleLang(){
+  applyLang(currentLang === 'es' ? 'en' : 'es');
+}
+
 </script>
 </body>
 </html>
